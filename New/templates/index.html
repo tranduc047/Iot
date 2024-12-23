@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin từ Sense HAT Emulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .data {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .joystick-events {
+            font-size: 18px;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin từ Sense HAT Emulator</h1>
+
+        <div class="data">
+            <p><strong>Nhiệt độ:</strong> {{ sensor_data['temperature'] }} °C</p>
+            <p><strong>Độ ẩm:</strong> {{ sensor_data['humidity'] }} %</p>
+        </div>
+
+        <div class="joystick-events">
+            <h3>Trạng thái Joystick:</h3>
+            {% if sensor_data['joystick_events'] %}
+                <ul>
+                    {% for event in sensor_data['joystick_events'] %}
+                        <li>Direction: {{ event.direction }}, Action: {{ event.action }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Joystick chưa được sử dụng.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
